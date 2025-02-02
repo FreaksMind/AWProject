@@ -17,6 +17,7 @@ def get_repos():
 
 @main.route('/ontology', methods=['GET'])
 def ontology():
+    org = request.args.get('org', 'facebook')
     ontology_data = build_ontology()
     return jsonify(ontology_data)
 

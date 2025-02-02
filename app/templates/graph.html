@@ -16,66 +16,29 @@
     <svg width="800" height="600"></svg>
     <script>
         async function drawGraph() {
-            const response = await fetch('/graph');
+            const response = await fetch('/ontology?org=mozilla');
             const data = await response.json();
 
-            const svg = d3.select("svg"),
-                  width = +svg.attr("width"),
-                  height = +svg.attr("height");
+            const nodes = [];
+            const edges = [];
 
-            const simulation = d3.forceSimulation()
-                .force("link", d3.forceLink().id(d => d.id).distance(100))
-                .force("charge", d3.forceManyBody().strength(-300))
-                .force("center", d3.forceCenter(width / 2, height / 2));
-
-            const link = svg.append("g")
-                .selectAll("line")
-                .data(data.edges)
-                .enter().append("line")
-                .attr("class", "link");
-
-            const node = svg.append("g")
-                .selectAll("circle")
-                .data(data.nodes)
-                .enter().append("circle")
-                .attr("class", "node")
-                .attr("r", 10)
-                .call(drag(simulation));
-
-            node.append("title").text(d => d.label);
-
-            simulation.nodes(data.nodes).on("tick", ticked);
-            simulation.force("link").links(data.edges);
-
-            function ticked() {
-                link.attr("x1", d => d.source.x)
-                    .attr("y1", d => d.source.y)
-                    .attr("x2", d => d.target.x)
-                    .attr("y2", d => d.target.y);
-
-                node.attr("cx", d => d.x)
-                    .attr("cy", d => d.y);
+            data["@graph"].forEach(item => {
+            if (item["@id"].includes("ontology#")) {
+                nodes.push({ id: item["@id"], label: item["@id"].split("#")[1] });
             }
-
-            function drag(simulation) {
-                return d3.drag()
-                    .on("start", (event, d) => {
-                        if (!event.active) simulation.alphaTarget(0.3).restart();
-                        d.fx = d.x;
-                        d.fy = d.y;
-                    })
-                    .on("drag", (event, d) => {
-                        d.fx = event.x;
-                        d.fy = event.y;
-                    })
-                    .on("end", (event, d) => {
-                        if (!event.active) simulation.alphaTarget(0);
-                        d.fx = null;
-                        d.fy = null;
-                    });
+            if (item["wado:usesLanguage"]) {
+                edges.push({ source: item["@id"], target: item["wado:usesLanguage"]["@id"] });
             }
-        }
+            if (item["wado:hasTopic"]) {
+                edges.push({ source: item["@id"], target: item["wado:hasTopic"]["@id"] });
+            }
+        });
 
+    console.log("Nodes:", nodes);
+    console.log("Edges:", edges);
+
+    // Use D3.js to render nodes & edges
+    }
         drawGraph();
     </script>
 </body>
