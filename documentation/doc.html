@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>Scholarly Documentation</h1>
+            <nav>
+                <ul>
+                    <li><a href="#abstract"><i class="fas fa-home"></i> Abstract</a></li>
+                    <li><a href="#introduction"><i class="fas fa-info-circle"></i> Introduction</a></li>
+                    <li><a href="#architecture"><i class="fas fa-project-diagram"></i> Architecture</a></li>
+                    <li><a href="#components"><i class="fas fa-cogs"></i> Main Components</a></li>
+                    <li><a href="#ontology"><i class="fas fa-sitemap"></i> Ontology</a></li>
+                    <li><a href="#user-guide"><i class="fas fa-book"></i> User Guide</a></li>
+                    <li><a href="#references"><i class="fas fa-link"></i> References</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Abstract Section -->
+        <section id="abstract" class="section-card">
+            <h2><i class="fas fa-home"></i> Abstract</h2>
+            <p>
+                The rapid expansion of open-source software development necessitates structured knowledge representation for better understanding and management of software ecosystems.
+                WadoApp presents an ontology-driven web application that leverages GitHub’s GraphQL API to extract, structure, and analyze public software repositories.
+                The system utilizes OWL (Web Ontology Language) to model key aspects of web application development, including programming paradigms, languages, architectures, and diverse software tools — such as frameworks. 
+                By reusing and extending existing ontologies, the proposed model provides a semantic framework that captures relationships between software artifacts, facilitating better querying, reasoning, and knowledge discovery. 
+                The application is built using Flask and rdflib for semantic data processing, with Vue.js powering an intuitive user interface for browsing and interacting with the accumulated knowledge. 
+                This system not only enables developers and researchers to explore software development trends but also supports intelligent querying and inference, offering a foundation for future applications in software analysis and recommendation systems.
+            </p>
+        </section>
+
+        <!-- Introduction Section -->
+        <section id="introduction" class="section-card">
+            <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+            <p>
+                The rapid evolution of web application development has led to the emergence of diverse programming paradigms, frameworks, 
+                methodologies, and toolchains, making it increasingly difficult for developers to navigate and understand the ever-expanding 
+                software ecosystem. Platforms like <strong>GitHub</strong> host millions of public repositories, showcasing real-world examples of 
+                how different technologies and practices converge to build modern applications. However, while GitHub and similar platforms provide 
+                valuable metadata and repository statistics, they lack a <strong>semantic layer</strong> that captures the intricate relationships 
+                between software components, development techniques, and technology stacks. Without such structured knowledge, developers and researchers 
+                often struggle to <strong>identify patterns, understand architectural decisions,</strong> or explore the broader context of a given technology.
+            </p>
+            <p>
+                This project addresses that gap by designing an <strong>OWL-based ontology</strong> that models fundamental aspects of web development, 
+                including <strong>programming paradigms, languages, architectures, development methodologies, and an extensive taxonomy of software tools</strong> 
+                (e.g., runtime platforms, compilers, frameworks, and IDEs). By leveraging <strong>GitHub’s GraphQL API</strong>, the system dynamically retrieves 
+                and categorizes repositories, enriching the ontology with real-world software artifacts. The ontology integrates with existing knowledge models 
+                where applicable, ensuring interoperability and extensibility.
+            </p>
+            <p>
+                To support knowledge management and interactive exploration, we develop a <strong>Flask-based backend</strong> utilizing <strong>rdflib</strong> 
+                for semantic data processing, coupled with a <strong>Vue.js frontend</strong> for visualization and querying. The system enables users to 
+                <strong>browse structured repository metadata, perform complex SPARQL queries, and uncover relationships between technologies</strong>, 
+                providing a valuable tool for researchers, software engineers, and technology enthusiasts. Additionally, by referencing curated 
+                <strong>"Awesome Lists"</strong> and <strong>Real Life Architectures</strong>, the ontology is grounded in practical, widely recognized 
+                software ecosystems.
+            </p>
+            <p>
+                Ultimately, this project aims to create a <strong>powerful tool for researchers, developers, and technology enthusiasts</strong>, 
+                facilitating knowledge discovery, accelerating learning, and fostering better decision-making in software development. By uniting 
+                <strong>semantic web technologies, open-source repositories, and modern web development frameworks</strong>, the system demonstrates 
+                how ontologies can transform raw repository data into <strong>actionable, meaningful insights</strong> — paving the way for more 
+                intelligent, interconnected, and semantically aware software ecosystems.
+            </p>
+        </section>
+
+        <!-- Architecture Section -->
+        <section id="architecture" class="section-card">
+            <h2><i class="fas fa-project-diagram"></i> Architecture of the Application</h2>
+            <p>
+                The architecture of the application is composed of both frontend and backend systems that seamlessly integrate to provide an intuitive and powerful tool for knowledge discovery. 
+                The frontend utilizes <strong>Vue.js</strong>, a progressive JavaScript framework, to offer an interactive and responsive user interface. The backend, built with <strong>Flask</strong>, a lightweight Python web framework, handles the data processing, ontology management, and user authentication. 
+                To handle semantic data, the application relies on <strong>rdflib</strong>, a Python library for working with RDF data, and integrates with <strong>GitHub's GraphQL API</strong> to dynamically retrieve and categorize repositories. 
+                Additionally, the application supports advanced querying via <strong>SPARQL</strong> to interact with both local ontologies and external data sources like <strong>DBpedia</strong>.
+            </p>
+        </section>
+
+        <!-- Main Components Section -->
+        <section id="components" class="section-card">
+            <h2><i class="fas fa-cogs"></i> Main Functionalities</h2>
+            <p>
+                The application is designed to provide users with a comprehensive toolset for exploring and interacting with software repositories and their relationships through a semantically structured ontology. 
+                First and foremost, users can generate an ontology from various sources, including data extracted from GitHub repositories and DBpedia. 
+                This ontology provides a structured, formal representation of the relationships between different software artifacts such as programming languages, frameworks, and tools. 
+                Once the ontology is created, users can query it using SPARQL. SPARQL (SPARQL Protocol and RDF Query Language) is a powerful query language designed for querying RDF (Resource Description Framework) data. 
+                This enables users to perform complex searches, retrieve specific data, and explore patterns and relationships within the ontology. 
+                The application's visualization features allow users to visualize the ontology either in a tree-like structure or graphically using Cytoscape, a powerful graph visualization tool. 
+                This visual representation provides users with an intuitive way to understand how different software components, such as libraries, frameworks, and languages, are interconnected. 
+                Lastly, users can research repositories through the application’s integration with the GitHub GraphQL API, which allows querying GitHub’s vast repository data. 
+                This feature enables users to search for repositories by specific parameters, such as programming language, stars, contributors, and more, helping them discover and analyze popular and relevant repositories. 
+                By integrating these functionalities, the application empowers users to navigate complex software ecosystems, facilitating knowledge discovery and enabling data-driven decision-making.
+            </p>
+
+            <h3><i class="fas fa-desktop"></i> Frontend</h3>
+            <p>
+                The frontend of the application is built using Vue.js and Cytoscape.js. 
+                Vue.js is a progressive JavaScript framework designed for building user interfaces and single-page applications. 
+                Vue’s component-based architecture allows for building modular, reusable pieces of UI, making it efficient and easy to scale. 
+                Vue provides reactivity, meaning that the UI automatically updates when data changes, ensuring users always see the most up-to-date information. 
+                Cytoscape.js is a graph visualization library used to represent the ontology as a network of connected entities. 
+                It allows for interactive graph visualizations, where users can zoom in and out, drag nodes, and explore relationships between technologies. 
+                Together, these technologies enable the creation of a dynamic, responsive, and user-friendly application that is capable of displaying complex data in an intuitive manner.
+            </p>
+
+            <h3><i class="fas fa-server"></i> Backend</h3>
+            <h4><i class="fas fa-code"></i> Web API</h4>
+            <p>
+                The backend of the application is powered by Flask, a lightweight and flexible Python web framework. 
+                Flask handles the core application logic, processes incoming HTTP requests, and routes them to appropriate services. 
+                The backend includes multiple essential services such as a REST API, an auth API, and an ontology service. 
+                A REST API (Representational State Transfer) is used to enable communication between the frontend and backend. 
+                It follows a stateless communication model, where each request from the client contains all the necessary data to be processed. 
+                REST APIs are commonly used because they are simple to implement, scalable, and widely understood. 
+                GraphQL, by contrast, offers more flexibility than REST, allowing the client to specify exactly which data it needs, reducing over-fetching. 
+            </p>
+
+            <h4><i class="fas fa-shield-alt"></i> Authentication</h4>
+            <p>
+                In addition to the REST API, the backend features an auth API that ensures secure user authentication and authorization. 
+                This is achieved using JWT (JSON Web Tokens), which provide a compact and self-contained mechanism for securely transmitting information between parties. 
+                The auth API validates user credentials and generates JWT tokens that the client uses to authenticate subsequent requests. 
+                The backend also uses PostgreSQL, a powerful relational database, to store user credentials, session data, and metadata about software repositories. 
+                The ontology service processes data into an RDF format and provides SPARQL endpoints for querying the ontology. 
+                This service integrates with the GitHub GraphQL API and DBpedia API to enrich the knowledge base with real-world software artifacts and their relationships.            
+            </p>
+
+            <h4><i class="fas fa-sitemap"></i> Ontology Service</h4>
+            <p>
+                The ontology service is a critical component of the application that enables the dynamic generation, population, and querying of an ontology that models software ecosystems. 
+                The process begins with the generation of a standard OWL (Web Ontology Language) skeleton, which is an abstract structure that defines the core concepts and relationships within the ontology. 
+                A custom script using the rdflib library is responsible for creating this skeleton. 
+                rdflib is a Python library for working with RDF data, which is the foundation of the ontology. 
+                Once the skeleton is created, the service populates the ontology by retrieving relevant data from both GitHub’s GraphQL API and DBpedia. 
+                The GitHub GraphQL API provides detailed metadata about software repositories, including information about programming languages, frameworks, and contributors. 
+                Similarly, DBpedia, which is a structured dataset derived from Wikipedia, offers rich data about various concepts, including software tools and technologies. 
+                The ontology service then links this data and stores it as RDF triples, which can be queried using SPARQL. 
+                Additionally, the application includes a search bar that allows users to directly query the GitHub API. 
+                By typing in keywords or technologies, users can view top repositories that match their search criteria. 
+                These repositories are then visualized in the context of the ontology, allowing users to explore relevant software ecosystems.            
+            </p>
+
+            <h2><i class="fas fa-tools"></i> Integrated Technologies</h2>
+            <h3><i class="fas fa-desktop"></i> Frontend: Vue.js & Cytoscape.js</h3>
+            <p>
+                The frontend of the application is powered by Vue.js and Cytoscape.js. 
+                Vue.js is a progressive JavaScript framework designed for building user interfaces and single-page applications. 
+                Vue’s component-based architecture allows for building modular, reusable pieces of UI, making it efficient and easy to scale. 
+                Vue provides reactivity, meaning that the UI automatically updates when data changes, ensuring users always see the most up-to-date information. 
+                Cytoscape.js is a graph visualization library used to represent the ontology as a network of connected entities. 
+                It allows for interactive graph visualizations, where users can zoom in and out, drag nodes, and explore relationships between technologies. 
+                Together, these technologies enable the creation of a dynamic, responsive, and user-friendly application that is capable of displaying complex data in an intuitive manner.
+            </p>
+
+            <h3><i class="fas fa-server"></i> Backend: Flask, Axios, JWT & PostgreSQL</h3>
+            <p>
+                The backend of the application uses Flask, a Python-based micro-framework that is lightweight and flexible, perfect for building APIs and handling HTTP requests. 
+                Axios, a popular JavaScript library, is used in the frontend to send HTTP requests to the backend API, which returns the requested data. 
+                The JWT (JSON Web Token) is a secure, compact, and self-contained method for transmitting data between parties as a JSON object. 
+                In this application, JWT is used for secure user authentication. 
+                PostgreSQL, a relational database management system, is used to store user credentials, session data, and metadata about repositories. 
+                It ensures data integrity and supports advanced querying capabilities. 
+                The combination of these technologies enables secure, scalable, and efficient communication between the frontend and backend.
+            </p>
+
+            <h3><i class="fas fa-database"></i> rdflib, GitHub GraphQL API, DBpedia API, SPARQL, Cytoscape.js</h3>
+            <p> 
+                The ontology service uses rdflib, a Python library for working with RDF data, to generate and query the ontology. 
+                GitHub’s GraphQL API is used to retrieve detailed information about repositories, such as programming languages, frameworks, and contributors. 
+                DBpedia is a structured data version of Wikipedia, offering rich knowledge about entities like programming languages, frameworks, and software tools. 
+                DBpedia is a large-scale knowledge base that extracts structured data and makes it available on the web. 
+                It contains information on a wide range of topics, including people, places, concepts, and software technologies. 
+                DBpedia uses RDF (Resource Description Framework) to represent data, making it easily queryable using SPARQL. 
+                The DBpedia API provides access to this vast dataset, allowing applications to retrieve information on a variety of subjects, including software components like programming languages, tools, and frameworks. 
+                DBpedia’s structured data is valuable for enriching the application’s ontology with real-world knowledge, helping users understand the context of software components and their interrelations.
+                It provides a valuable data source for enriching the ontology with information not available directly from GitHub. 
+                SPARQL is the query language used to retrieve data from the ontology, allowing users to explore relationships and perform complex searches. 
+                Finally, Cytoscape.js is used to visualize the ontology, enabling users to see the relationships between software components in an interactive graph format.
+            </p>
+        </section>
+
+        <!-- Ontology Section -->
+        <section id="ontology" class="section-card">
+            <h2><i class="fas fa-sitemap"></i> Ontology of the Application</h2>
+            <h3><i class="fas fa-network-wired"></i> Taxonomy of the Ontology</h3>
+            <p>
+                The taxonomy of the ontology is structured to reflect the hierarchical relationships between various programming technologies and concepts. 
+                At the highest level, the ontology is divided into broad categories such as <strong>ProgrammingLanguage</strong>, <strong>Framework</strong>, <strong>OperatingSystem</strong>, and <strong>ProgrammingParadigm</strong>, each representing a distinct domain of knowledge. 
+                Within these categories, the ontology further refines concepts by defining subclasses. 
+                For instance, under the <strong>Framework</strong> class, there are subclasses like <strong>BackendFramework</strong>, <strong>FrontendFramework</strong>, and <strong>MachineLearningFramework</strong>, which capture more specific types of frameworks that are relevant to particular fields or domains.
+            </p>
+            <p>
+                Similarly, the <strong>ProgrammingLanguage</strong> class can include various programming languages, each characterized by their own properties such as syntax, usage, and associated frameworks. 
+                The <strong>OperatingSystem</strong> class includes operating systems that are often associated with particular frameworks or development environments, while the <strong>ProgrammingParadigm</strong> class categorizes languages and frameworks based on the paradigm they support, such as Object-Oriented, Functional, or Imperative programming.
+            </p>
+            <p>
+                This hierarchical taxonomy not only organizes the entities but also enables efficient querying and reasoning over the data. 
+                For example, by knowing that a specific framework is a subclass of <strong>BackendFramework</strong>, one can infer its relevance in backend development, and by understanding the relationship between a programming language and its paradigms, users can better categorize and find technologies that fit their programming style or project needs.
+            </p>
+
+            <h3><i class="fas fa-sitemap"></i> Structure of the Ontology</h3>
+            <p>
+                The ontology described here is designed to represent a set of concepts and relationships in the domain of programming frameworks, languages, and technologies. 
+                The ontology is built using the Web Ontology Language (OWL) and incorporates classes, properties, and relationships that define entities such as programming languages, frameworks, operating systems, and more. 
+                The structure of the ontology is generated using the Python script <code>ontology_generator.py</code>, which leverages the <code>rdflib</code> library to create the RDF graph and serialize it into OWL format. 
+                The structure of the ontology is composed of several key components.
+            </p>
+            <p>
+                First, the ontology defines multiple classes such as <strong>ProgrammingLanguage</strong>, <strong>Framework</strong>, <strong>OperatingSystem</strong>, <strong>License</strong>, and <strong>ProgrammingParadigm</strong>. 
+                These classes represent core entities in the system and are populated with relevant data properties such as <strong>hasName</strong>, <strong>hasDeveloper</strong>, and <strong>hasDescription</strong>, which capture basic attributes of these classes. 
+                For example, a <strong>ProgrammingLanguage</strong> class has properties like <code>hasName</code> and <code>hasDeveloper</code>, whereas a <strong>Framework</strong> class has properties like <code>hasVersion</code> and <code>hasURL</code>.
+            </p>
+            <p>
+                The ontology also introduces object properties, which define relationships between different classes. 
+                For instance, a <strong>Framework</strong> can be related to a <strong>ProgrammingLanguage</strong> using the <code>usesLanguage</code> object property. Similarly, relationships between frameworks and programming paradigms are captured through properties like <code>supportsParadigm</code> and <code>usesArchitecture</code>.
+            </p>
+            <p>
+                The structure of this ontology is further enriched by subclass relationships. 
+                Frameworks are divided into specific subclasses, such as <strong>BackendFramework</strong>, <strong>FrontendFramework</strong>, and <strong>MachineLearningFramework</strong>. 
+                This subclassing ensures that the ontology accommodates the various specific types of frameworks and their characteristics. 
+                For example, <code>BackendFramework</code> and <code>FrontendFramework</code> are both subclasses of the more general <code>Framework</code> class.
+            </p>
+            <p>
+                To populate the ontology with real-world data, two sources of information are used: GitHub and DBpedia. 
+                The <code>OntologyPopulator</code> class fetches data from these sources and updates the ontology. 
+                The GitHub data is fetched using the GitHub GraphQL API, which allows for querying repositories based on topics such as programming languages or frameworks. 
+                The <code>fetch_repos_by_topic</code> method allows users to specify a topic and retrieve popular repositories (e.g., repositories related to specific programming languages or frameworks). 
+                This data is then inserted into the ontology, populating entities like <strong>ProgrammingLanguage</strong> and <strong>Framework</strong> with relevant information, such as names, descriptions, and URLs.
+            </p>
+            <p>
+                In addition to GitHub data, DBpedia provides data on various programming languages, paradigms, and operating systems. 
+                The <code>fetch_dbpedia_data</code> method queries DBpedia using the SPARQL endpoint and retrieves relevant data, including labels and descriptions for programming languages, operating systems, and programming paradigms. 
+                This information is then added to the ontology using the <code>add_dbpedia_information</code> method. 
+                Each entity is labeled with its description and type, ensuring that the ontology is populated with authoritative data from DBpedia.
+            </p>
+            <p>
+                The combination of these two data sources ensures that the ontology is both comprehensive and up-to-date, reflecting real-world technologies and practices in the domain of programming. 
+                The result is a rich semantic model that can be used for knowledge representation, data integration, and querying related to programming frameworks, languages, and their associated components.
+            </p>
+            <p>
+                In summary, this ontology serves as a foundational model for representing the relationships and attributes of programming technologies, offering a structured view of concepts like frameworks, languages, and paradigms. 
+                The population of this ontology is powered by data from GitHub and DBpedia, providing real-world examples and references to these technologies, which enhances the utility and relevance of the ontology.
+            </p>
+
+            <h3><i class="fas fa-eye"></i> Visualization of Ontology Taxonomy</h3>
+            <p>
+                The structure of the ontology can be visualized using <strong>Cytoscape</strong>, a graph visualization tool that displays relationships between entities. This allows users to explore the connections between various technologies, frameworks, and languages in an intuitive way.
+            </p>
+
+            <h4><i class="fas fa-check-circle"></i> Final Ontology</h4>
+            <p>
+                The final ontology model captures key aspects of software development, from programming languages and frameworks to development tools and methodologies. It enables rich semantic queries and data exploration, allowing users to uncover hidden connections between different software components.
+            </p>
+        </section>
+
+        <!-- User Guide Section -->
+        <section id="user-guide" class="section-card">
+            <h2><i class="fas fa-book"></i> User Guide Reference</h2>
+            <p>How users can interact with the system.</p>
+        </section>
+
+        <!-- References Section -->
+        <section id="references" class="section-card">
+            <h2><i class="fas fa-link"></i> References</h2>
+            <p>List of cited references and sources.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Scholarly Documentation. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
