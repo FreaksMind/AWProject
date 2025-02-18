@@ -133,3 +133,31 @@ footer p {
     margin-right: 10px;
     color: #1ABC9C;
 }
+
+/* Image Container */
+.image-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Image Styling */
+.section-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Caption */
+.image-caption {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 10px;
+    font-style: italic;
+}
