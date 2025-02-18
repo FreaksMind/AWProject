@@ -98,6 +98,9 @@
                     First and foremost, users can generate an ontology from various sources, including data extracted from GitHub repositories and DBpedia. 
                     This ontology provides a structured, formal representation of the relationships between different software artifacts such as programming languages, frameworks, and tools. 
                 </p>
+
+        <!-- Image 1: Ontology Generation -->
+
         <div class="image-container">
             <img src="homepage.png" alt="Wado Homepage" class="section-image">
             <p class="image-caption">Figure 1: Web Application Overview</p>
@@ -108,6 +111,7 @@
             This enables users to perform complex searches, retrieve specific data, and explore patterns and relationships within the ontology. 
         </p>
 
+        <!-- Image 2: SPARQL Query -->
         <div class="image-container">
             <img src="sparql.png" alt="SPARQL Query Example" class="section-image">
             <p class="image-caption">Figure 2: Example of a SPARQL query and results.</p>
@@ -128,6 +132,7 @@
             <p class="image-caption">Figure 4: Ontology overview in tree-like structure.</p>
         </div>
 
+        <!-- Image 3: Ontology Visualization -->
         <div class="image-container">
             <img src="graph1.png" alt="Ontology Visualization" class="section-image">
             <p class="image-caption">Figure 5: Overview of ontology visualized using Cytoscape.</p>
@@ -143,6 +148,7 @@
             This feature enables users to search for repositories by specific parameters, such as programming language, stars, contributors, and more, helping them discover and analyze popular and relevant repositories. 
         </p>
 
+        <!-- Image 4: GitHub Repository Search -->
         <div class="image-container">
             <img src="search.png" alt="GitHub Repository Search" class="section-image">
             <p class="image-caption">Figure 7: Searching repositories using the GitHub GraphQL API.</p>
@@ -189,6 +195,40 @@
                 By typing in keywords or technologies, users can view top repositories that match their search criteria. 
                 These repositories are then visualized in the context of the ontology, allowing users to explore relevant software ecosystems.            
             </p>
+            <h3>SPARQL Query:</h3>
+    <pre>
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;
+
+SELECT ?entity ?label ?comment ?type WHERE {
+    { ?entity rdf:type dbo:ProgrammingLanguage . }
+    UNION
+    { ?entity rdf:type dbo:ProgrammingParadigm . }
+    UNION
+    { ?entity rdf:type dbo:OperatingSystem . }
+    
+    ?entity rdfs:label ?label .
+    ?entity rdfs:comment ?comment .
+    OPTIONAL { ?entity rdf:type ?type . }
+
+    FILTER (lang(?label) = "en" && lang(?comment) = "en")
+}
+    </pre>
+
+    <h3>Description:</h3>
+    <ul>
+        <li><code>?entity</code> - The subject (e.g., a programming language, paradigm, or OS).</li>
+        <li><code>?label</code> - The name of the entity.</li>
+        <li><code>?comment</code> - A description of the entity.</li>
+        <li><code>?type</code> - The type of the entity (optional field).</li>
+    </ul>
+
+    <p>
+        This query helps extract relevant knowledge for ontology modeling in the domain of web application development.
+        It uses DBpedia's structured data and applies language filters to ensure English results.
+    </p>
+
 
             <h2><i class="fas fa-tools"></i> Integrated Technologies</h2>
             <h3><i class="fas fa-desktop"></i> Frontend: Vue.js & Cytoscape.js</h3>
@@ -303,13 +343,131 @@
         <section id="user-guide" class="section-card">
             <h2><i class="fas fa-book"></i> User Guide Reference</h2>
             <p>How users can interact with the system.</p>
+                <p>
+                    This section provides an in-depth overview of the functionalities available to users within this application. 
+                    The application is designed to facilitate the generation, visualization, querying, and exploration of ontologies 
+                    related to web application development. Furthermore, it provides an integrated mechanism for discovering relevant 
+                    GitHub repositories based on user-defined search criteria.
+                </p>
+            
+                <h3>Accessing the Application</h3>
+                <p>
+                    Upon entering the homepage, users are presented with an intuitive interface featuring interactive buttons. 
+                    Each button corresponds to a core functionality of the application, allowing users to seamlessly navigate through 
+                    different aspects of ontology management and repository exploration.
+                </p>
+            
+                <h3>Generating an Ontology</h3>
+                <p>
+                    One of the fundamental features of this application is the capability to generate an ontology based on predefined 
+                    semantic structures. By clicking the <strong>"Generate Ontology"</strong> button, the system automatically constructs 
+                    an ontology encompassing various concepts such as programming paradigms, architectures, methodologies, software tools, 
+                    and development ecosystems. This ontology is expressed in the Web Ontology Language (OWL) and is constructed following 
+                    best practices for semantic representation.
+                </p>
+            
+                <h3>Downloading the Ontology</h3>
+                <p>
+                    Once an ontology has been generated, users have the option to download it for offline use or further modifications. 
+                    By selecting the <strong>"Download Ontology"</strong> button, the system exports the ontology in a standard OWL format, 
+                    ensuring compatibility with ontology editing tools such as Protégé. This feature is particularly beneficial for users 
+                    who wish to extend, refine, or integrate the generated ontology into larger knowledge representation frameworks.
+                </p>
+            
+                <h3>Querying the Ontology using SPARQL</h3>
+                <p>
+                    The application provides an interactive querying interface that enables users to retrieve specific information from 
+                    the ontology using <strong>SPARQL</strong> queries. By clicking the <strong>"Query Ontology"</strong> button, users 
+                    are directed to an input field where they can compose and execute SPARQL queries to extract meaningful insights from 
+                    the structured data. This feature supports advanced knowledge discovery and enables users to interact with the ontology 
+                    dynamically, facilitating deeper analysis of software development concepts.
+                </p>
+            
+                <h3>Visualizing the Ontology</h3>
+                <p>
+                    Understanding the structural relationships within an ontology is essential for effective knowledge management. 
+                    The application offers two distinct modes of ontology visualization:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Tree-Like Structure:</strong> Users can explore the hierarchical organization of concepts in a structured 
+                        tree format, enabling a clear understanding of parent-child relationships between different ontology elements.
+                    </li>
+                    <li>
+                        <strong>Graph Representation:</strong> For users who prefer a more interconnected view, the ontology can be 
+                        displayed as a graph. This representation emphasizes the relationships between entities through nodes and edges, 
+                        providing an intuitive way to comprehend the ontology’s structure.
+                    </li>
+                </ul>
+                <p>
+                    These visualization modes enhance the user experience by allowing interactive exploration of the ontology, 
+                    making it easier to grasp complex relationships between various software development components.
+                </p>
+            
+                <h3>Finding Relevant GitHub Repositories</h3>
+                <p>
+                    As part of its extended functionality, the application integrates with the GitHub GraphQL API to retrieve 
+                    repositories based on user-specified criteria. By selecting the <strong>"Search topics"</strong> button, 
+                    users can input keywords or programming languages to discover repositories that align with their interests. 
+                    The application performs a search query, filtering repositories based on relevance, number of stars, and other 
+                    parameters to provide high-quality results. This feature aids researchers, developers, and practitioners in 
+                    identifying useful codebases, frameworks, and projects that contribute to their work.
+                </p>
+            
+                <h3>Conclusion</h3>
+                <p>
+                    This application serves as a comprehensive tool for ontology generation, management, visualization, and querying, 
+                    while also extending its capabilities to include GitHub repository discovery. By leveraging semantic technologies 
+                    and structured data representation, users can efficiently model software development concepts and explore real-world 
+                    repositories that align with their interests. The integration of SPARQL querying and interactive visualizations 
+                    enhances the usability and accessibility of the ontology, making this application a valuable resource for developers, 
+                    researchers, and knowledge engineers in the field of web application development.
+                </p>
+            
         </section>
-
-        <!-- References Section -->
         <section id="references" class="section-card">
             <h2><i class="fas fa-link"></i> References</h2>
-            <p>List of cited references and sources.</p>
+                <p>Below is a list of cited references and sources that are relevant to ontology generation, querying, visualization, and repository exploration.</p>
+            
+                <ul>
+                    <li>
+                        <strong>DBpedia:</strong> A community-driven project that extracts structured content from Wikipedia to create a knowledge base.  
+                        <a href="https://www.dbpedia.org/" target="_blank">https://www.dbpedia.org/</a>
+                    </li>
+                    <li>
+                        <strong>SPARQL Query Language:</strong> The W3C standard for querying RDF data.  
+                        <a href="https://www.w3.org/TR/sparql11-query/" target="_blank">https://www.w3.org/TR/sparql11-query/</a>
+                    </li>
+                    <li>
+                        <strong>GitHub GraphQL API:</strong> The official documentation for GitHub's GraphQL API, which allows querying repository data.  
+                        <a href="https://docs.github.com/en/graphql" target="_blank">https://docs.github.com/en/graphql</a>
+                    </li>
+                    <li>
+                        <strong>OWL Web Ontology Language:</strong> The W3C recommendation for creating ontologies.  
+                        <a href="https://www.w3.org/OWL/" target="_blank">https://www.w3.org/OWL/</a>
+                    </li>
+                    <li>
+                        <strong>Protégé Ontology Editor:</strong> A widely used tool for creating and editing OWL ontologies.  
+                        <a href="https://protege.stanford.edu/" target="_blank">https://protege.stanford.edu/</a>
+                    </li>
+                    <li>
+                        <strong>RDF Schema (RDFS):</strong> The W3C standard for describing relationships between RDF resources.  
+                        <a href="https://www.w3.org/TR/rdf-schema/" target="_blank">https://www.w3.org/TR/rdf-schema/</a>
+                    </li>
+                    <li>
+                        <strong>Web Ontology and Knowledge Graphs:</strong> An introduction to knowledge representation and graph-based structures.  
+                        <a href="https://www.cambridge.org/core/journals/knowledge-engineering-review" target="_blank">https://www.cambridge.org/core/journals/knowledge-engineering-review</a>
+                    </li>
+                    <li>
+                        <strong>SPARQL Endpoint for DBpedia:</strong> An interactive endpoint for querying DBpedia data using SPARQL.  
+                        <a href="https://dbpedia.org/sparql" target="_blank">https://dbpedia.org/sparql</a>
+                    </li>
+                </ul>
+            </section>
+            
         </section>
+
+       
     </main>
 
     <!-- Footer -->
